@@ -66,6 +66,21 @@ class AuthController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($user) {
+
+            // update user
+            $user->update($request->all());
+
+            return $this->success('Berhasil mengubah data', $user);
+        }
+
+        return $this->error("User tidak ditemukan");
+    }
+
     public function success($message = 'success', $data)
     {
         return response()->json([
