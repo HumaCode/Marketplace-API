@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [AuthController::class, 'login']);
-Route::post('register', [AuthController::class, 'register']);
-Route::put('update-user/{id}', [AuthController::class, 'update']);
+Route::post('login', [AuthController::class, 'login']);   // api login
+Route::post('register', [AuthController::class, 'register']);   // api register
+Route::put('update-user/{id}', [AuthController::class, 'update']);    // api ubah profil
+Route::post('upload-user/{id}', [AuthController::class, 'upload']);  // api upload foto
