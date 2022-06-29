@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\TokoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::post('login', [AuthController::class, 'login']);   // api login
 Route::post('register', [AuthController::class, 'register']);   // api register
 Route::put('update-user/{id}', [AuthController::class, 'update']);    // api ubah profil
 Route::post('upload-user/{id}', [AuthController::class, 'upload']);  // api upload foto
+
+
+Route::resource('toko', TokoController::class);
