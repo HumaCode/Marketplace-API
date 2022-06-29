@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AlamatTokoController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TokoController;
 use Illuminate\Http\Request;
@@ -28,3 +29,6 @@ Route::post('upload-user/{id}', [AuthController::class, 'upload']);  // api uplo
 
 Route::resource('toko', TokoController::class);
 Route::get('toko-user/{id}', [TokoController::class, 'cekToko']);
+
+
+Route::resource('alamat-toko', AlamatTokoController::class);
