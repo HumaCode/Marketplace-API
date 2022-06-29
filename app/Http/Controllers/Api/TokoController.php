@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Toko;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -98,6 +99,19 @@ class TokoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cekToko($id)
+    {
+        // cek user berdasarkan id
+        $user = User::where('id', $id)->with('toko')->first();
+
+        // jika ada
+        if ($user) {
+            return $this->success('Success', $user);
+        } else {
+            return $this->error('User tidak ditemukan!');
+        }
     }
 
     public function success($message = 'success', $data)

@@ -27,3 +27,4 @@ Route::post('upload-user/{id}', [AuthController::class, 'upload']);  // api uplo
 
 
 Route::resource('toko', TokoController::class);
+Route::get('toko-user/{id}', [TokoController::class, 'cekToko']);
