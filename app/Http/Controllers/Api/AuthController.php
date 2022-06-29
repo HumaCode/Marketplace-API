@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -87,9 +88,19 @@ class AuthController extends Controller
 
         if ($user) {
 
+
+
             // jika ada gambarnya maka akan di proses
             $filename = "";
             if ($request->image) {
+                // gambar lama
+                $gambarLama = $user->image;
+
+                // unlink foto lama
+                if ($gambarLama) {
+                    Storage::delete("public/user/" . $gambarLama);
+                }
+
                 $image = $request->image->getClientOriginalName();  // ambil nama gambar
                 $image = str_replace(" ", "", $image);   // untuk menghilangkan space
                 $image = date("Hs") . rand(1, 999) . "_" . $image;   // menambahkan jam secara random
@@ -98,6 +109,9 @@ class AuthController extends Controller
             } else {
                 return $this->error("Foto tidak boleh kosong!");
             }
+
+
+
 
             // update user
             $user->update([
